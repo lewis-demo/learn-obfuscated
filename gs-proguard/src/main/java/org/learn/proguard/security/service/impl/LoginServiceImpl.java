@@ -1,6 +1,7 @@
 package org.learn.proguard.security.service.impl;
 
 import org.learn.proguard.common.constant.StatusEnum;
+import org.learn.proguard.common.util.StringUtil;
 import org.learn.proguard.security.dao.IUserDao;
 import org.learn.proguard.security.dao.impl.UserDaoImpl;
 import org.learn.proguard.security.domain.SysUser;
@@ -11,6 +12,9 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	public SysUser login(String name) {
+		if (StringUtil.isBlank(name)) {
+			return null;
+		}
 		return userDao.find(name);
 	}
 

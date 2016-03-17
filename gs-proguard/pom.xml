@@ -110,9 +110,10 @@
 						<option>-repackageclasses org.learn.proguard.pg</option>
 
 						<option>-keep class **.package-info</option>
-						<option>-keep class org.learn.proguard.MainApp { public &lt;methods&gt;; }</option>
+						<option>-keep enum ** { public *; }</option>
+						<option>-keep interface ** { public *; }</option>
 						<option>-keep class org.learn.proguard.*.domain.** { *; }</option>
-						<option>-keep interface org.learn.proguard.*.service.** { *; }</option>
+						<option>-keep class org.learn.proguard.MainApp { public &lt;methods&gt;; }</option>
 						<option>-keepattributes Signature</option>
 						<option>-keepattributes *Annotation*</option>
 					</options>

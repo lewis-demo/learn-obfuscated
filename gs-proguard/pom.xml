@@ -113,6 +113,7 @@
 						<option>-keep enum ** { public *; }</option>
 						<option>-keep interface ** { public *; }</option>
 						<option>-keep class org.learn.proguard.*.domain.** { *; }</option>
+						<option>-keep class **.*Util* { *; }</option>
 						<option>-keep class org.learn.proguard.MainApp { public &lt;methods&gt;; }</option>
 						<option>-keepattributes Signature</option>
 						<option>-keepattributes *Annotation*</option>

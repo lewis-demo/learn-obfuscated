@@ -32,11 +32,13 @@
 				<groupId>${project.groupId}</groupId>
 				<artifactId>pg-common</artifactId>
 				<version>${project.version}</version>
+				<classifier>pg</classifier>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>pg-security</artifactId>
 				<version>${project.version}</version>
+				<classifier>pg</classifier>
 			</dependency>
 
 			<!-- Apache Commons Lang3 -->
@@ -62,4 +64,5 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 </project>

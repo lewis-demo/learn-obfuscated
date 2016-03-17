@@ -10,7 +10,7 @@
 		<artifactId>pg-parent</artifactId>
 		<version>0.1.0</version>
 	</parent>
-	
+
 	<properties>
 		<mainClass>org.learn.proguard.MainApp</mainClass>
 	</properties>
@@ -19,12 +19,19 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>pg-security</artifactId>
+			<classifier>pg</classifier>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>proguard</finalName>
 		<plugins>
+			<!-- 代码混淆 -->
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+			</plugin>
+
 			<!-- 复制依赖的jar包到指定目录 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -58,6 +65,44 @@
 							<mainClass>${mainClass}</mainClass>
 						</manifest>
 					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- 代码混淆 -->
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<version>2.0.11</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<attach>true</attach>
+					<attachArtifactClassifier>pg</attachArtifactClassifier>
+					<options>
+						<!-- <option>-dontobfuscate</option> -->
+						<option>-ignorewarnings</option>
+						<option>-dontshrink</option>
+						<option>-dontoptimize</option>
+						<option>-dontskipnonpubliclibraryclasses</option>
+						<option>-dontskipnonpubliclibraryclassmembers</option>
+						<option>-repackageclasses org.learn.proguard.pg</option>
+
+						<option>-keep class **.package-info</option>
+						<option>-keep enum ** { public *; }</option>
+						<option>-keep interface ** { public *; }</option>
+						<option>-keep class org.learn.proguard.*.domain.** { *; }</option>
+						<option>-keep class **.*Util* { *; }</option>
+						<option>-keep class org.learn.proguard.MainApp { public &lt;methods&gt;; }</option>
+						<option>-keepattributes Signature</option>
+						<option>-keepattributes *Annotation*</option>
+					</options>
+					<outjar>${project.build.finalName}-pg</outjar>
 				</configuration>
 			</plugin>
 		</plugins>

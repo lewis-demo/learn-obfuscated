@@ -25,4 +25,45 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<!-- 代码混淆 -->
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<version>2.0.11</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<attach>true</attach>
+					<attachArtifactClassifier>pg</attachArtifactClassifier>
+					<options>
+						<!-- <option>-dontobfuscate</option> -->
+						<option>-ignorewarnings</option>
+						<option>-dontshrink</option>
+						<option>-dontoptimize</option>
+						<option>-dontskipnonpubliclibraryclasses</option>
+						<option>-dontskipnonpubliclibraryclassmembers</option>
+						<option>-repackageclasses org.learn.proguard.common.pg</option>
+
+						<option>-keep class **.package-info</option>
+						<option>-keep enum ** { public *; }</option>
+						<option>-keep interface ** { public *; }</option>
+						<option>-keep class org.learn.proguard.*.domain.** { *; }</option>
+						<option>-keep class **.*Util* { *; }</option>
+						<option>-keepattributes Signature</option>
+						<option>-keepattributes *Annotation*</option>
+					</options>
+					<outjar>${project.build.finalName}-pg</outjar>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

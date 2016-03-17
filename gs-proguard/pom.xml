@@ -48,6 +48,7 @@
 	<build>
 		<finalName>proguard</finalName>
 		<plugins>
+			<!-- 复制依赖的jar包到指定目录 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -66,8 +67,9 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- 可执行的jar -->
 			<plugin>
-				<!-- 可执行的jar -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
@@ -79,6 +81,41 @@
 							<mainClass>${mainClass}</mainClass>
 						</manifest>
 					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- 代码混淆 -->
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<version>2.0.11</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<attach>true</attach>
+					<attachArtifactClassifier>pg</attachArtifactClassifier>
+					<options>
+						<!-- <option>-dontobfuscate</option> -->
+						<option>-ignorewarnings</option>
+						<option>-dontshrink</option>
+						<option>-dontoptimize</option>
+						<option>-dontskipnonpubliclibraryclasses</option>
+						<option>-dontskipnonpubliclibraryclassmembers</option>
+						<option>-repackageclasses org.learn.proguard.pg</option>
+
+						<option>-keep class **.package-info</option>
+						<option>-keep class org.learn.proguard.MainApp { *; }</option>
+						<option>-keep interface org.learn.proguard.*.service.** { *; }</option>
+						<option>-keepattributes Signature</option>
+						<option>-keepattributes SourceFile,LineNumberTable,*Annotation*</option>
+					</options>
+					<outjar>${project.build.finalName}-pg</outjar>
 				</configuration>
 			</plugin>
 		</plugins>

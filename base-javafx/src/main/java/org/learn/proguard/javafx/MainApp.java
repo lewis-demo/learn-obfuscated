@@ -6,11 +6,23 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- *
- */
 public class MainApp extends Application {
+	private String pri_str;
+	protected String pro_str;
+	public String pub_str;
+
+	private String priMethod(String str) {
+		return "pri_" + str;
+	}
+
+	protected String proMethod(String str) {
+		return "pro_" + str;
+	}
+
+	public String pubMethod(String str) {
+		return "pub_" + str;
+	}
+
 	public static void main(String[] args) {
 		Application.launch(args);
 	}

@@ -1,0 +1,11 @@
+<config>
+	<input>
+		<jar in="${project.build.finalName}.jar" out="${project.build.finalName}-obfuscated.jar" />
+	</input>
+
+	<keep-names>
+		<class template="class *.MainApp" />
+	</keep-names>
+
+	<property name="log-file" value="log.xml" />
+</config>

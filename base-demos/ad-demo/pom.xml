@@ -21,6 +21,7 @@
 	<modules>
 		<module>child-common</module>
 		<module>child-security</module>
+		<module>child-main</module>
 	</modules>
 
 	<dependencyManagement>
@@ -29,6 +30,11 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>child-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>child-security</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

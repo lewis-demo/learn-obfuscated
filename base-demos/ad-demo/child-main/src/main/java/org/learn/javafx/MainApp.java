@@ -13,10 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- *
- */
 public class MainApp extends Application {
 	public static final Logger logger = Logger.getLogger(MainApp.class);
 	public static final ILoginService loginSrv = new LoginServiceImpl();
@@ -41,7 +37,7 @@ public class MainApp extends Application {
 
 		TextArea ta = new TextArea();
 		ta.setEditable(false);
-		
+
 		tf.setOnAction(event -> {
 			ta.setText(tf.getText());
 			tf.clear();

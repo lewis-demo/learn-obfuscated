@@ -17,4 +17,5 @@
 			<artifactId>child-common</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>
